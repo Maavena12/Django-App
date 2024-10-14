@@ -18,7 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOGIN_URL = 'gastos/login'  # Nombre de la vista de login (a la que redirigir si no está autenticado)  
 LOGIN_REDIRECT_URL = 'home'  # URL a la que se redirige después del login  
-STATIC_URL = '/bills/static/'  
+STATIC_URL = '/static/'  
 # Solo si necesitas agregar más directorios estáticos:  
 STATICFILES_DIRS = [  
     os.path.join(BASE_DIR, 'bills', 'static'),  # Esto incluye tu carpeta estática en 'bills'  
