@@ -15,7 +15,7 @@
 <body>
     <div class="container">
         <h1>Iniciar Sesión</h1>  
-        <form method="post" action="{% url 'login' %}">  
+        <form method="post">  
             {% csrf_token %}  
             {{ form.as_p }}  
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>  

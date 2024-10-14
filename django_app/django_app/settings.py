@@ -16,10 +16,9 @@ from pathlib import Path
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
 BASE_DIR = Path(__file__).resolve().parent.parent
 
-LOGIN_URL = 'login'  # Nombre de la vista de login (a la que redirigir si no está autenticado)  
+LOGIN_URL = 'gastos/login'  # Nombre de la vista de login (a la que redirigir si no está autenticado)  
 LOGIN_REDIRECT_URL = 'home'  # URL a la que se redirige después del login  
 STATIC_URL = '/static/'
-SESSION_EXPIRE_AT_BROWSER_CLOSE = True
 MEDIA_URL = '/media/'  
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SESSION_COOKIE_NAME = 'usuario_id'

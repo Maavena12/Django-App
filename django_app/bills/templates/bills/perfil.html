@@ -23,35 +23,37 @@
 
     <h2>Resumen de Gastos por Mes</h2>  
     {% if gastos_mensuales %}  
-        <table style="width: 100%; border-collapse: collapse;">  
-            <tr>  
-                <th style="padding: 10px; border: 1px solid #ddd;">Mes</th>  
-                <th style="padding: 10px; border: 1px solid #ddd;">Total Gastado</th>  
-                <th style="padding: 10px; border: 1px solid #ddd;">Mayor Gasto</th>
-                <th style="padding: 10px; border: 1px solid #ddd;">Porcentaje de Cambio (Mes Pasado)</th>  
-            </tr>  
-            {% for gasto in gastos_mensuales %}  
-            <tr>  
-                <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.mes|date:"F Y" }}</td>  
-                <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.total_gastado }} $</td>  
-                <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.max_gasto }} $</td>
-                <td style="padding: 10px; border: 1px solid #ddd;" class="{% if forloop.last %}gasto-neutral{% elif gasto.porcentaje < 0 %}gasto-mayor{% elif gasto.porcentaje > 0 %}gasto-menor{% endif %}">  
-                    {% if forloop.last %}  
-                        0%  
-                    {% else %}  
-                        {{ gasto.porcentaje|floatformat:2 }}%  
-                    {% endif %}  
-                </td>  
-            </tr>  
-            {% endfor %}    
-        </table>  
+        <div class="table-responsive">
+            <table class="table table-striped">  
+                <tr>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Mes</th>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Total Gastado</th>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Mayor Gasto</th>
+                    <th style="padding: 10px; border: 1px solid #ddd;">Porcentaje de Cambio (Mes Pasado)</th>  
+                </tr>  
+                {% for gasto in gastos_mensuales %}  
+                <tr>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.mes|date:"F Y" }}</td>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.total_gastado }} $</td>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.max_gasto }} $</td>
+                    <td style="padding: 10px; border: 1px solid #ddd;" class="{% if forloop.last %}gasto-neutral{% elif gasto.porcentaje < 0 %}gasto-mayor{% elif gasto.porcentaje > 0 %}gasto-menor{% endif %}">  
+                        {% if forloop.last %}  
+                            0%  
+                        {% else %}  
+                            {{ gasto.porcentaje|floatformat:2 }}%  
+                        {% endif %}  
+                    </td>  
+                </tr>  
+                {% endfor %}    
+            </table>  
+        </div>
     {% else %}  
         <p>No hay gastos registrados para mostrar.</p>  
     {% endif %}  
 
     <br>
     
-    <div>  
+    <div class="mb-3">  
         <button type="submit" onclick="window.location.href='../../gastos/editar-perfil'" class="btn btn-primary">Editar Perfil</button>  
         <button type="submit" onclick="window.location.href='../../gastos/borrar-cuenta'" class="btn btn-danger">Borrar Cuenta</button>  
     </div>  

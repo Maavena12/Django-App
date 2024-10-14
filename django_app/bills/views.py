@@ -9,7 +9,6 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth import logout 
 from .forms import LoginForm 
 
-@login_required(login_url='login') 
 def lista_gastos(request):  
     usuario = get_object_or_404(Usuario, id=request.session['usuario_id'])
     gastos = Gasto.objects.filter(usuario=usuario)
@@ -25,6 +24,7 @@ def login_view(request):
             usuario = Usuario.objects.get(correo=correo)  
             if (contraseña == usuario.contraseña):
                 request.session['usuario_id'] = usuario.id
+                messages.success(request, 'Inicio de Sesión Exitosa.') 
                 return redirect('/gastos')
             else:  
                 messages.error(request, 'Credenciales incorrectas.')  
@@ -40,7 +40,7 @@ def registro(request):
         if form.is_valid():  
             form.save()  
             messages.success(request, 'Cuenta creada con éxito. Puedes iniciar sesión.')  
-            return redirect('login')  # Redirige al login después del registro  
+            return redirect('login')
     else:  
         form = RegistroForm()  
 

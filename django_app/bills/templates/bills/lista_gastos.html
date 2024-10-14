@@ -23,7 +23,8 @@
         </div>  
         <br> 
         {% if gastos %}  
-            <table style="width: 100%; border-collapse: collapse;">  
+        <div class="table-responsive">
+            <table class="table table-striped table-bordered">  
                 <tr>  
                     <th style="padding: 10px; border: 1px solid #ddd;">Nombre</th>  
                     <th style="padding: 10px; border: 1px solid #ddd;">Cantidad</th>  
@@ -51,6 +52,7 @@
                 </tr>  
                 {% endfor %}  
             </table>  
+        </div>
     
             <h3>Total de Gastos: {{ total_gastos }} $</h3>
         {% else %}  
