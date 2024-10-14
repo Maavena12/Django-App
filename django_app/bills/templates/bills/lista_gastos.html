@@ -1,0 +1,65 @@
+{% extends "bills/base.html" %}  
+
+{% block title %}Lista de Gastos{% endblock %}  
+
+{% block content %}  
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Lista de Gastos</title>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+</head> 
+<body>
+    <div class="container">
+        <div style="display: flex; align-items: center;">  
+            <h1>Lista de Gastos</h1>  
+            <button type="button" class="btn btn-primary"
+                    style="margin-left: 10px;"   
+                    onclick="window.location.href='../../gastos/agregar'">  
+                Agregar Nuevo Gasto  
+            </button>  
+        </div>  
+        <br> 
+        {% if gastos %}  
+            <table style="width: 100%; border-collapse: collapse;">  
+                <tr>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Nombre</th>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Cantidad</th>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Categoría</th>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Fecha de Registro</th>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Fecha de Caducidad</th>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Mensual</th>  
+                    <th style="padding: 10px; border: 1px solid #ddd;">Acción</th>
+                </tr>  
+                {% for gasto in gastos %}  
+                <tr>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.nombre }}</td>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.cantidad }} $</td>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.categoria }}</td>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.fecha_registro|date:"d/m/Y" }}</td>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.fecha_caducidad|date:"d/m/Y" }}</td>  
+                    <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.mensual|yesno:"Sí,No" }}</td> 
+                    <td style="padding: 10px; border: 1px solid #ddd;">  
+                        {% if not gasto.pagado %}   
+                            <button type="submit" class="btn btn-primary" onclick="window.location.href='../../gastos/pagar/{{ gasto.id }}'">Pagar</button>  
+                        {% else %}  
+                        <button type="button" class="btn btn-primary" onclick="window.location.href='../../gastos/detalle/{{ gasto.id }}'">Ver Detalles</button>  
+                        {% endif %}  
+                    </td>
+                </tr>  
+                {% endfor %}  
+            </table>  
+    
+            <h3>Total de Gastos: {{ total_gastos }} $</h3>
+        {% else %}  
+            <p>No hay gastos registrados.</p>  
+        {% endif %}
+    </div>  
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+</body>
+</html>
+{% endblock %}

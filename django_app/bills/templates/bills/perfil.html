@@ -1,0 +1,64 @@
+{% extends "bills/base.html" %}  
+
+{% block title %}Mi Perfil{% endblock %}  
+
+{% block content %} 
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Perfil</title>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+</head>
+<body>
+    <div class="container">
+        <h1>Mi Perfil</h1>  
+    
+    <div>  
+        <p><strong>Nombre:</strong> {{ user.nombre }} {{user.apellido}}</p>  
+        <p><strong>Email:</strong> {{ user.correo }}</p>
+        <p><strong>Nombre Usuario:</strong> {{ user.nombre_usuario }}</p>     
+    </div>  
+
+    <h2>Resumen de Gastos por Mes</h2>  
+    {% if gastos_mensuales %}  
+        <table style="width: 100%; border-collapse: collapse;">  
+            <tr>  
+                <th style="padding: 10px; border: 1px solid #ddd;">Mes</th>  
+                <th style="padding: 10px; border: 1px solid #ddd;">Total Gastado</th>  
+                <th style="padding: 10px; border: 1px solid #ddd;">Mayor Gasto</th>
+                <th style="padding: 10px; border: 1px solid #ddd;">Porcentaje de Cambio (Mes Pasado)</th>  
+            </tr>  
+            {% for gasto in gastos_mensuales %}  
+            <tr>  
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.mes|date:"F Y" }}</td>  
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.total_gastado }} $</td>  
+                <td style="padding: 10px; border: 1px solid #ddd;">{{ gasto.max_gasto }} $</td>
+                <td style="padding: 10px; border: 1px solid #ddd;" class="{% if forloop.last %}gasto-neutral{% elif gasto.porcentaje < 0 %}gasto-mayor{% elif gasto.porcentaje > 0 %}gasto-menor{% endif %}">  
+                    {% if forloop.last %}  
+                        0%  
+                    {% else %}  
+                        {{ gasto.porcentaje|floatformat:2 }}%  
+                    {% endif %}  
+                </td>  
+            </tr>  
+            {% endfor %}    
+        </table>  
+    {% else %}  
+        <p>No hay gastos registrados para mostrar.</p>  
+    {% endif %}  
+
+    <br>
+    
+    <div>  
+        <button type="submit" onclick="window.location.href='../../gastos/editar-perfil'" class="btn btn-primary">Editar Perfil</button>  
+        <button type="submit" onclick="window.location.href='../../gastos/borrar-cuenta'" class="btn btn-danger">Borrar Cuenta</button>  
+    </div>  
+    </div>
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script> 
+</body> 
+</html>
+{% endblock %}

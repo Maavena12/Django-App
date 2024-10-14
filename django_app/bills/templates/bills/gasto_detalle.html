@@ -1,0 +1,33 @@
+{% extends "bills/base.html" %}  
+
+{% block title %}Detalles del Gasto{% endblock %}  
+
+{% block content %}  
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>Detalles del Gasto</title>  
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">  
+</head>  
+<body>
+    <div class="container">
+        <h2>Detalles del Gasto: {{ gasto.nombre }}</h2>  
+        <p><strong>Cantidad:</strong> {{ gasto.cantidad }} $</p>  
+        <p><strong>Categoría:</strong> {{ gasto.categoria }}</p>  
+        <p><strong>Fecha de Registro:</strong> {{ gasto.fecha_registro|date:"d/m/Y" }}</p>  
+        <p><strong>Fecha de Caducidad:</strong> {{ gasto.fecha_caducidad|date:"d/m/Y" }}</p>  
+        <p><strong>Mensual:</strong> {{ gasto.mensual|yesno:"Sí,No" }}</p>
+        <p><button type="submit" class="btn btn-primary" onclick="window.location.href='../../'">Volver a la lista de gastos</button></p>  
+    
+        {% if gasto.imagen %}  
+            <img src="{{ gasto.imagen.url }}" alt="{{ gasto.nombre }} imagen" style="max-width: 300px;">  
+        {% endif %} 
+    </div> 
+    <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>  
+    <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.9.2/dist/umd/popper.min.js"></script>  
+    <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>  
+</body>
+</html>
+{% endblock %}

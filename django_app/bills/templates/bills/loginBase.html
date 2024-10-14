@@ -1,0 +1,25 @@
+<!DOCTYPE html>  
+<html lang="es">  
+<head>  
+    <meta charset="UTF-8">  
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">  
+    <title>{% block title %}Consultor de Gastos{% endblock %}</title>  
+    {% load static %}   
+    <link rel="stylesheet" href="{% static 'bills/styles.css' %}">  
+</head>  
+<body>  
+    <header class="header">  
+        <div class="header-content-input">  
+            <h1><a style="text-decoration: none; color: inherit;">Consultor de Gastos</a></h1>  
+        </div>  
+    </header>  
+    <main>  
+        <br>  
+        {% block content %}   
+        {% endblock %}  
+    </main>  
+    <footer>  
+        <p>&copy; 2024 Consultor de Gastos. Todos los derechos reservados.</p>  
+    </footer>  
+</body>  
+</html>
