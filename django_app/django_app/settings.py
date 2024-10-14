@@ -22,7 +22,7 @@ STATICFILES_DIRS = [
     os.path.join(BASE_DIR, 'bills', 'static'),  # Esto incluye tu carpeta estática en 'bills'  
 ]  
 
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 MEDIA_URL = '/media/'  
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SESSION_COOKIE_NAME = 'usuario_id'
