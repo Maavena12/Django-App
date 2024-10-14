@@ -18,16 +18,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOGIN_URL = 'gastos/login'  # Nombre de la vista de login (a la que redirigir si no está autenticado)  
 LOGIN_REDIRECT_URL = 'home'  # URL a la que se redirige después del login  
-BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))  
-
 STATIC_URL = '/static/'  
-
-# Solo si necesitas agregar más directorios estáticos:  
-STATICFILES_DIRS = [  
-    os.path.join(BASE_DIR, 'bills', 'static'),  # Esto incluye tu carpeta estática en 'bills'  
-]  
-
-STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'  
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SESSION_COOKIE_NAME = 'usuario_id'
