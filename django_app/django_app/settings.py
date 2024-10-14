@@ -18,7 +18,13 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 LOGIN_URL = 'gastos/login'  # Nombre de la vista de login (a la que redirigir si no está autenticado)  
 LOGIN_REDIRECT_URL = 'home'  # URL a la que se redirige después del login  
-STATIC_URL = 'bills/static/'  
+STATIC_URL = '/bills/static/'  
+# Solo si necesitas agregar más directorios estáticos:  
+STATICFILES_DIRS = [  
+    os.path.join(BASE_DIR, 'bills', 'static'),  # Esto incluye tu carpeta estática en 'bills'  
+]  
+
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
 MEDIA_URL = '/media/'  
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 SESSION_COOKIE_NAME = 'usuario_id'
@@ -33,8 +39,8 @@ SECRET_KEY = 'django-insecure-o0_^c9w%2%#l(d!b!e5sm&nn6=@nj)+9t0w=4y_rv$dn^83%_a
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['django-app-production-5a8d.up.railway.app', 'https://django-app-production-5a8d.up.railway.app', 'http://127.0.0.1']
-CSRF_TRUSTED_ORIGINS = ['https://django-app-production-5a8d.up.railway.app', 'http://127.0.0.1']
+ALLOWED_HOSTS = ['django-app-production-5a8d.up.railway.app', 'https://django-app-production-5a8d.up.railway.app', 'http://127.0.0.1:8000']
+CSRF_TRUSTED_ORIGINS = ['https://django-app-production-5a8d.up.railway.app', 'http://127.0.0.1:8000']
 
 
 # Application definition
