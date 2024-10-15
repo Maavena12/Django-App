@@ -20,12 +20,8 @@
             {{ form.as_p }}  
             <button type="submit" class="btn btn-primary">Iniciar Sesión</button>  
         </form>  
-    
-        {% if messages %}  
-            {% for message in messages %}  
-                <div>{{ message }}</div>  
-            {% endfor %}  
-        {% endif %}  
+
+        <p>Puedes probar la demo con un usuario de prueba: pedro.ramirez@example.com y contraseña345</p>
     
         <p>No tienes una cuenta? <button type="submit" class="btn btn-secondary" onclick="window.location.href='../../gastos/registro'">Regístrate aquí</button>.</p>
     </div>
