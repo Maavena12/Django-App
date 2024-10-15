@@ -19,7 +19,11 @@
             {% csrf_token %}  
             {{ form.as_p }}  
             <button type="submit" class="btn btn-primary">Registrarse</button>  
-        </form>  
+        </form> 
+        
+        <div class="mt-4">
+            <button type="submit" class="btn btn-secondary" onclick="window.location.href='../../gastos/login'">Volver a login</button>
+        </div>
     
         {% if messages %}  
             {% for message in messages %}  
